@@ -1,0 +1,256 @@
+<section class="bg-light py-5">
+    <div class="row">
+       <div class="col-lg-7 col-sm-12 mx-auto">
+          <div class="bg-light w-100 " id="LOGIN">
+             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                   <button class="nav-link border border-light border-end-0 active" id="pills-login-tab" data-bs-toggle="pill" data-bs-target="#pills-login" type="button" role="tab" aria-controls="pills-login" aria-selected="true"><b class="text-dark">Log in</b></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                   <button class="nav-link border border-light border-start-0" id="pills-signin-tab" data-bs-toggle="pill" data-bs-target="#pills-signin" type="button" role="tab" aria-controls="pills-signin" aria-selected="false"><b class="text-dark">Sign up</b></button>
+                </li>
+             </ul>
+             <div class="tab-content justify-content-center" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab" tabindex="0">
+                   <div class="col-md-12 bg-light p-5 ">
+
+
+
+                     <!--------------------------------------------------->
+                     
+                     <h2 class="text-Dark py-3">LOGIN INTO YOUR ACCOUNT</h2>
+                     <form #loginForm="ngForm" (ngSubmit)="onLoginSubmit(responsemodal,loginForm)" novalidate>
+                       
+                        <div class="form-group">
+                          <label for="email"><b>Email</b></label>
+                          <input type="email" class="form-control" #name="ngModel" name="login_email" [(ngModel)]="login_email"  placeholder="Registered email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="8">
+                          <div *ngIf="name.invalid && name.touched" style="color:red"> 
+                           <div *ngIf="name.errors?.['pattern']" style="color:red"> pattern_mismatch
+                           </div>
+                           <div *ngIf="name.errors?.['required']" style="color:red"> Please Enter the email</div>
+                           </div>
+                              
+                          
+                        
+
+                        </div>
+                        <div class="form-group">
+                           <label for="name"><b>Password</b></label>
+                           <input type="text" class="form-control"  #password= "ngModel" name="login_password" [(ngModel)]="login_password"  placeholder= "Password with min 8 characters with atleast 1 uppercase and 1 lowercase and 1 digit and a special character" required minlength="8" maxlength="15" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$" >
+                           <div *ngIf="password.invalid && password.touched" style="color:red"> 
+                              <div *ngIf="password.errors?.['required']" style="color:red"> Please Enter the Password</div>
+                           <div *ngIf="password.errors?.['pattern'] " style="color:red"> invalid password pattern</div>
+                           <div *ngIf="password.errors?.['minlength'] " style="color:red">Min length should be 8</div>
+                        </div>
+                           
+                        
+
+                              
+                         </div>
+                         <div class="form-group">
+                           <label for="name"><b>Mobile</b></label>
+                           <input type="text" class="form-control"  #phone="ngModel" name="login_mobile" [(ngModel)]="login_mobile"  placeholder= "Mobile" required pattern="^[0-9]{10}$" minlength="10">
+                           <div *ngIf="phone.invalid && phone.touched" style="color:red">
+                              <div *ngIf="phone.errors?.['required']" style="color:red"> Please Enter the Mobilenumber</div>
+                              <div *ngIf="phone.errors?.['minlength'] " style="color:red">Min length should be 10</div>
+                              <div *ngIf="phone.errors?.['pattern'] " style="color:red">pattern mismatch</div>
+                           
+                           </div>
+                         </div>
+                         <br>
+                        <button type="submit"  [disabled]="loginForm.invalid" class="btn btn-dark">Submit</button>
+                      </form>
+                      
+                      
+                      
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+                      <!------------------------------------------------------->
+                   </div>
+                </div>
+                <div class="tab-pane fade" id="pills-signin" role="tabpanel" aria-labelledby="pills-signin-tab" tabindex="0">
+                   <div class="col-md-12 bg-light py-5 px-5 justify-content-center">
+
+
+                     <h2 class="text-Dark py-3">CREATE YOUR ACCOUNT</h2>
+                     <!----------------------------------------------------------------------------->
+                     <form #signinForm="ngForm" (ngSubmit)="onSignupSubmit(sucessmodal,responsemodal,signinForm)">
+
+
+                        
+                        <div class="form-group">
+                           <label for="company_name"><b>COMPANY NAME</b></label>
+                           <input type="text" class="form-control" name="company_name" #companyname="ngModel" [(ngModel)]="company_name"  placeholder="NAME OF ORGANIZATION" required>
+                           
+
+                           <div *ngIf="companyname.invalid && companyname.touched" style="color:red"> 
+                           <div *ngIf="companyname.errors?.['required']" style="color:red"> Please Enter the "COMPANY NAME"</div>
+                           </div>
+                         </div>
+                         <div class="form-group">
+                           <label for="company_gst"><b>COMPANY GST</b></label>
+                           <input type="text" class="form-control" #gst="ngModel" name="company_gst" [(ngModel)]="company_gst"  placeholder="GST / TIN" required pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" minlength="15" maxlength="15">
+                           <div *ngIf="gst.invalid && gst.touched" style="color:red"> 
+
+                           <div *ngIf="gst.errors?.['required']" style="color:red"> Please Enter the "GST"</div>
+                           <div *ngIf="gst.errors?.['pattern']" style="color:red"> pattern_mismatch
+                           </div>
+                           <div *ngIf="gst.errors?.['minlength']" style="color:red"> Minimum length is 15 bytes
+                           </div>
+
+
+                           </div>
+
+                         </div>
+
+
+                         <div class="form-group">
+                           <label for="company_name"><b>ADDRESS</b></label>
+                           <input type="text" class="form-control" name="company_address" #companyaddress="ngModel" [(ngModel)]="company_address"  placeholder="COMPANY ADDRESS" required>
+                           
+
+                           <div *ngIf="companyaddress.invalid && companyaddress.touched" style="color:red"> 
+                           <div *ngIf="companyaddress.errors?.['required']" style="color:red"> Please Enter the company address</div>
+                           </div>
+                         </div>
+
+                         <div class="form-group">
+                           <label for="company_name"><b>AREA</b></label>
+                           <input type="text" class="form-control" name="company_area" #companyarea="ngModel" [(ngModel)]="company_area"  placeholder="AREA" required>
+                           
+
+                           <div *ngIf="companyarea.invalid && companyarea.touched" style="color:red"> 
+                           <div *ngIf="companyarea.errors?.['required']" style="color:red"> Please Enter the Area"</div>
+                           </div>
+                         </div>
+
+                         <div class="form-group">
+                           <label for="company_name"><b>CITY</b></label>
+                           <input type="text" class="form-control" name="company_city" #companycity="ngModel" [(ngModel)]="company_city"  placeholder="CITY" required>
+                           
+
+                           <div *ngIf="companycity.invalid && companycity.touched" style="color:red"> 
+                           <div *ngIf="companycity.errors?.['required']" style="color:red"> Please Enter the City"</div>
+                           </div>
+                         </div>
+
+
+                         <div class="form-group">
+                           <label for="name"><b> PINCODE</b></label>
+                           <input type="text" class="form-control" #pincode="ngModel"name="company_pincode"[(ngModel)]="company_pincode" placeholder="PIN CODE"  pattern="^[0-9]{06}$" required>
+                            
+                             <div *ngIf="pincode.invalid && pincode.touched" style="color:red"> 
+                               <div *ngIf="pincode.errors?.['required']" style="color:red"> Please Enter the Pincode</div>
+                               <div *ngIf="pincode.errors?.['pattern'] " style="color:red"> Should Only have Digits</div>
+                              
+                              </div>
+                             </div>
+
+                         
+
+
+                        <div class="form-group">
+                          <label for="signin_email"><b>EMAIL</b></label>
+                          <input type="email" class="form-control" #Email="ngModel" name="email" [(ngModel)]="signin_email"  placeholder="OFFICIAL EMAIL/LOGISTIC DEPT EMAIL" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                          <div *ngIf="Email.invalid && Email.touched" style="color:red"> 
+                           <div *ngIf="Email.errors?.['pattern']" style="color:red"> pattern_mismatch
+                           </div>
+                           <div *ngIf="Email.errors?.['required']" style="color:red"> Please Enter the "EMAIL"</div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="signin_password"><b>Password</b></label>
+                           <input type="text" class="form-control" #Pass="ngModel" name="signin_password" [(ngModel)]="signin_password" placeholder= "Password with min 8 characters with alpha numberic and special character" required  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$" >
+
+
+                           <div *ngIf="Pass.invalid && Pass.touched" style="color:red"> 
+                              <div *ngIf="Pass.errors?.['required']" style="color:red"> Please Enter the "PASSWORD"</div>
+                           <div *ngIf="Pass.errors?.['pattern'] " style="color:red"> invalid password pattern</div>
+                           <div *ngIf="Pass.errors?.['minlength'] " style="color:red">Min length should be 8</div>
+                           </div>
+
+                         </div>
+                         <div class="form-group">
+                           <label for="name"><b>Mobile</b></label>
+                           <input type="text" class="form-control" #mobile="ngModel" name="signin_mobile" [(ngModel)]="signin_mobile"  placeholder= "MOBILE" required>
+                           <div *ngIf="mobile.invalid && mobile.touched" style="color:red">
+                              <div *ngIf="mobile.errors?.['required']" style="color:red"> Please Enter the "MOBILE NUMBER"</div>
+                              <div *ngIf="mobile.errors?.['minlength'] " style="color:red">Min length should be 10</div>
+                              <div *ngIf="mobile.errors?.['pattern'] " style="color:red">pattern mismatch</div>
+                           
+                           </div>
+                         </div>
+                         <br>
+                        <button type="submit" [disabled]="signinForm.invalid" class="btn btn-dark">SUBMIT</button>
+                      </form>
+                      
+
+
+
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+
+
+
+
+
+
+ <ng-template #responsemodal let-c="close" let-d="dismiss">
+	<!-- add your custom CSS class here -->
+	 <div class="modal-content">
+	   <div class="modal-header">
+		 <h4 class="modal-title" id="modal-basic-title">   *** OOPS SOMETHING WENT WRONG! ***</h4>
+		 <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	   </div>
+	   <div class="modal-body">
+         <p class="text-danger"><b>{{ responseMessage }}</b></p>
+		
+	   </div>
+	   <div class="modal-footer">
+		 <button type="button" class="btn btn-outline-dark">Submit</button>
+	   </div>
+	 </div>
+   
+ </ng-template>
+
+
+ <ng-template #sucessmodal let-c="close" let-d="dismiss">
+	<!-- add your custom CSS class here -->
+	 <div class="modal-content">
+	   <div class="modal-header">
+		 <h4 class="modal-title" id="modal-basic-title">  
+          *** YAY...! CONGRATULATIONS. THANKS FOR JOINING US! ***</h4>
+		 <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	   </div>
+	   <div class="modal-body">
+         <p>{{ responseMessage }}</p>
+		
+	   </div>
+	   <div class="modal-footer">
+		 <button type="button" class="btn btn-outline-dark">Submit</button>
+	   </div>
+	 </div>
+   
+ </ng-template>
+
+
+
+
+
+ 

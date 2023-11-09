@@ -1,0 +1,264 @@
+
+   
+<style>
+.bg-secondary {
+   background-color: rgb(184, 179, 179) !important;
+   }
+</style>
+   
+   <div class="row m-0">
+       <div class="col-sm-12 col-lg-6 mx-auto">
+          <div class=" card text-dark bg-light   ">
+             <div class="card-header bg-secondary text-center ">
+                <span id="boot-icon" class="bi bi-truck " style="font-size:1.80rem"> <b>TRACK YOUR CONSIGNMENT</b></span>
+             </div>
+             <div class="card-body">
+                <ul class="nav nav-pills px-3 md-auto" id="pills-tab" role="tablist">
+                   <li class="nav-item" role="presentation">
+                      <div class="form-check form-check-inline">
+                         <input  class="form-check-input active" id="home-tab" data-bs-toggle="pill" name="inlineRadioOptions" data-bs-target="#home" type="radio" role="tab" aria-controls="home" aria-selected="true" value="option1" checked>
+                         <label class="form-check-label" for="inlineRadio1">LR NO</label>
+                      </div>
+                   </li>
+                   <li class="nav-item" role="presentation">
+                      <div class="form-check form-check-inline">
+                         <input type="radio" class="form-check-input" id="profile-tab" name="inlineRadioOptions" data-bs-toggle="pill" data-bs-target="#profile" type="radio" role="tab" aria-controls="profile" aria-selected="false"value="option2">
+                         <label class="form-check-label" for="inlineRadio1">INVOICE NO</label>
+                      </div>
+                   </li>
+                   <li class="nav-item" role="presentation">
+                      <div class="form-check form-check-inline">
+                         <input type="radio" class="form-check-input" id="contact-tab" name="inlineRadioOptions" data-bs-toggle="pill" data-bs-target="#contact" type="radio" role="tab" aria-controls="contact" aria-selected="false" value="option3">
+                         <label class="form-check-label" for="inlineRadio1">ORDER REF</label>
+                      </div>
+                   </li>
+                </ul>
+                <div class="tab-content p-3" id="myTabContent">
+                   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                     <form #loginForm="ngForm" (ngSubmit)="toggletrackConsignment()" novalidate>
+                        <div class="form-group">
+                         <div class="row">
+                            <div class="col-md-8">
+                             
+                               <input type="text" class="form-control"  placeholder="LR NO" #name="ngModel" name="LR_Number" [(ngModel)]="LR_Number"   required pattern="^[0-9]+$" >
+                               <div *ngIf="name.invalid && name.touched" style="color:red"> 
+                                 <div *ngIf="name.errors?.['pattern']" style="color:red"> LR NUMBER SHOULD HAVE ONLY DIGITS
+                                 </div>
+                                 <div *ngIf="name.errors?.['required']" style="color:red"> Please Enter the LR NO.</div>
+                                 </div>
+                            </div>
+                           
+                            <div class="col-md-4">
+                              <button type="submit"  [disabled]="loginForm.invalid" class="btn btn-dark px-5">TRACK</button>
+                            </div>
+                            
+                         </div>
+                        </div>
+                      </form>
+                   </div>
+                   <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <form>
+                         <div class="row">
+                            <div class="col-md-8">
+                               <input type="text" class="form-control form-control-md" placeholder="INVOICE NO" >
+                            </div>
+                            <div class="col-md-4 ">
+                              <app-button color="green" text="TRACK" clsname="btn btn-dark px-5" (btnClick)="toggletrackConsignment_Invoice()"></app-button>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                   <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                      <form>
+                         <div class="row">
+                            <div class="col-md-8">
+                               <input type="text" class="form-control form-control-md" placeholder="ORDER REF" >
+                            </div>
+                            <div class="col-md-4">
+                              <app-button color="green" text="TRACK" clsname="btn btn-dark px-5" (btnClick)="toggletrackConsignment_OrderRef()"></app-button>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+
+
+
+<div class="div p-5" *ngIf="LRflag">
+   <div class="container">
+
+   <div class="row px-3" style="background-color: rgb(233, 10, 10);">
+
+      <h3>CONSGINMENT/LR NUMBER NOT FOUND PLEASE TRY AGAIN LATER....!</h3>
+
+      
+
+        </div>
+      </div>
+
+
+</div>
+
+
+    <div  class="py-5" *ngIf="flag">
+    <section>
+
+      <div class="container">
+
+
+
+<div class="row " style="background-color: rgb(223, 158, 61);">
+
+<h3>Booking details</h3>
+</div>
+
+
+
+<div class="row bg-light p-2">
+
+            <div class="col-md-2   text-right ">
+            <h5>Booking date</h5>
+             <p style="line-height:0.25;">{{Booking_details['Booking_Date']}}</p>
+            </div>
+            
+            <div class="col-md-2 text-right ">
+            </div>
+
+            <div class="col-md-2 ">
+            <h5>From</h5>
+               <p style="line-height:0.25;">{{Booking_details['From']}}</p>
+               </div>
+
+            <div class="col-md-2 text-right ">
+           <h5>To</h5>
+           <p style="line-height:0.25;">{{Booking_details['To']}}</p>
+            </div>
+
+             <div class="col-md-2 text-right">
+             <h5>Package Count</h5>
+             <p style="line-height:0.25;">{{Booking_details['Package_Count']}}</p>
+             </div>
+
+             <div class="col-md-2 text-right">
+             <h5>Delivery Type</h5>
+             <p style="line-height:0.25;">{{Booking_details['Delivery_Type']}}</p>
+              </div>
+
+</div>
+            
+<div class="row " style="background-color: rgb(223, 158, 61);">
+<h3>Delivery details</h3>
+</div>
+           
+           
+<div class="row bg-light p-2">
+           
+<div class="col-md-2 text-right ">
+<h5>Consignment At</h5>
+<p style="line-height:0.25;">{{Delivery_details['Consignment_At']}}</p>          
+</div>
+                       
+<div class="col-md-2 text-right ">
+</div>
+           
+           
+           
+<div class="col-md-2 text-right">
+<h5>Reached time</h5>
+<p style="line-height:0.25;">{{Delivery_details['Consignment_time']}}</p>
+</div>
+          
+
+<div class="col-md-2 text-right">
+   <h5>Delivery Status</h5>
+   <p style="line-height:0.25;">{{Delivery_details['Delivery_Status']}}</p>             
+ </div>
+           
+<div class="col-md-2 text-right">
+<h5>Delivered Date</h5>
+<p style="line-height:0.25;">{{Delivery_details['Delivered_Date']}}</p>            
+</div>
+                        
+<div class="col-md-2 text-right ">
+<h5>Delivery Type</h5>
+<p style="line-height:0.25;">{{Delivery_details['Delivery_Type']}}</p>
+           
+</div>
+
+                     
+
+</div>
+           
+
+              
+           
+           
+           
+<div class="row" style="background-color: rgb(223, 158, 61);">
+<h3>Transit Details</h3>
+</div>
+
+<div class="row bg-light">
+
+<div class="col-md-2 text-right">
+<h5 > From </h5>
+<p style="line-height:0.25;">DELHI TPT</p> 
+</div>
+              
+<div class="col-md-2 text-right">
+<h5> To </h5>
+<p style="line-height:0.25;">NOIDA B</p>
+  
+</div>
+              
+<div class="col-md-2 text-right">
+<h5> Delivery Time </h5>
+<p style="line-height:0.25;">25-05-2022 03:44:44</p> 
+</div>
+
+</div>
+
+
+   
+           
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+
+
+
+
+
+
+
+
+
+
+
+         
+         </div>
+</section>
+    </div>

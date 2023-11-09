@@ -1,0 +1,32 @@
+
+<div class="container mx-auto">
+
+  <div class="div" *ngIf="!update_flag" >
+  <form #updatepassword="ngForm" (ngSubmit)="update_password()" >
+<div class="form-group py-3   text-center mx-auto">
+    <label for="otp"><b>Please Check your Email for OTP:</b></label>
+    <div class="otp-input-box py-3">
+      <input type="text" id="otp" name="otp" maxlength="6" required [(ngModel)]="otpCode" #otpInput="ngModel" pattern="[0-9]*" placeholder="Enter the OTP">
+      <div class="otp-box">
+        
+      </div>
+    </div>
+    <div *ngIf="otpInput.invalid && otpInput.touched" class="text-danger">
+      <div *ngIf="otpInput.errors?.['required']">OTP is required</div>
+      <div *ngIf="otpInput.errors?.['pattern']">Please enter a valid OTP</div>
+    </div>
+    <button class="btn btn-danger justify-content-center" [disabled]="updatepassword.invalid">Verify!</button>
+  </div>
+  </form>
+</div>
+
+
+<div class="div" *ngIf="update_flag">
+
+  <span > <b>Password updated Successfully..!</b></span>
+  <br>
+  <button class="btn btn-success">Back to Login</button>
+</div>
+
+ 
+</div>

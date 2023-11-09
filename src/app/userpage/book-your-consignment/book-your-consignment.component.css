@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+    display: flex;
+  }
+  
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:flex;
+    width: 200px;
+    background-color:black;
+  }

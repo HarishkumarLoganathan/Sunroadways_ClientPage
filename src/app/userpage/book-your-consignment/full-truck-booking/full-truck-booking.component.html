@@ -1,0 +1,144 @@
+
+
+
+<h4 class="p-5">BLIND PART LOAD BOOKING</h4>
+
+<form #blindmanifestbooking="ngForm" class="px-5"  >
+
+<div class="row">
+    <div class="form-group col-lg-3">
+    
+     
+      <label for="name"><b>Pickup City</b></label>
+     
+      <select class="form-control" name="pickup_location" #pickuplocation="ngModel" id=pickup_location [(ngModel)]="pickup_location" required>
+        <ng-container *ngFor="let location of loc">
+         
+         <option [value]="location">{{ location }}</option>
+       </ng-container>
+       
+    </select>
+    
+      <div *ngIf="pickuplocation.invalid && pickuplocation.touched" style="color:red"> 
+      <div *ngIf="pickuplocation.errors?.['required']" style="color:red"> Please Select the Pickup Location</div>
+     </div>
+    </div>
+
+
+    
+
+
+      <div class="form-group col-lg-3">
+        <label for="name"><b>Nearest Pickup Branch</b></label>
+      <select class="form-control" #pickupbranch="ngModel" name="pickup_branch" [(ngModel)]="pickup_branch" required>
+        <ng-container *ngFor="let branch of Branches|keyvalue">
+          <ng-container *ngIf="branch.key == pickup_location">
+            <ng-container *ngFor="let branch of branch.value">
+         <option>{{ branch }}</option>
+        </ng-container>
+        </ng-container>
+         </ng-container>
+    </select>
+   
+  </div>
+      
+    
+      
+    <div class="form-group col-lg-3">
+       <label for="name"><b>Drop City</b></label>
+      
+       <select class="form-control" name="drop_location" #droplocation="ngModel" id=drop_location [(ngModel)]="drop_location" required>
+        <ng-container *ngFor="let location of loc">
+         <ng-container *ngIf="location !== pickup_location">
+         <option [value]="location">{{ location }}</option>
+       </ng-container>
+        </ng-container>
+    </select>
+    <div *ngIf="droplocation.invalid && droplocation.touched" style="color:red"> 
+      <div *ngIf="droplocation.errors?.['required']" style="color:red"> Please Select the Drop Location</div>
+     </div>
+  
+
+ </div>
+
+ <div class="form-group col-lg-3">
+  <label for="name"><b>Nearest Delivery Branch</b></label>
+<select class="form-control" #deliverybranch="ngModel" name="delivery_branch" [(ngModel)]="delivery_branch" required>
+  <ng-container *ngFor="let branch of Branches|keyvalue">
+    <ng-container *ngIf="branch.key == drop_location">
+      <ng-container *ngFor="let branch of branch.value">
+   <option>{{ branch }}</option>
+  </ng-container>
+  </ng-container>
+   </ng-container>
+</select>
+
+</div>
+
+
+
+ <div class="form-group col-lg-4">
+    <label for="name"><b>Total Consignment</b></label>
+    <input type="number" class="form-control"   #totalconsignment= "ngModel" name="total_consignment" [(ngModel)]="total_consignment"  placeholder= "Number of Consignments" required min="0" pattern='^[1-9][0-9]*$'>
+    <div *ngIf="totalconsignment.invalid && totalconsignment.touched" style="color:red"> 
+     <div *ngIf="totalconsignment.errors?.['required']" style="color:red"> Please Enter Total Number of Consignment</div>
+     <div *ngIf="totalconsignment.errors?.['pattern']" style="color:red"> Please Enter a Positive value greater than zero</div>
+    </div>
+  </div>
+
+
+  <div class="form-group col-lg-4">
+    <label for="name"><b>Total Weight of the Consignments</b></label>
+    <input type="number" class="form-control"   #weight= "ngModel" name="total_weight" [(ngModel)]="total_weight"  placeholder= " Total Consignment weight" required  pattern='^[1-9][0-9]*$' >
+    <div *ngIf="weight.invalid && weight.touched" style="color:red"> 
+     <div *ngIf="weight.errors?.['required']" style="color:red"> Please Enter the weight of the consignment</div>
+     <div *ngIf="weight.errors?.['pattern']" style="color:red"> Please Enter a Positive value greater than zero</div>
+    </div>
+  </div>
+
+
+  <div class="form-group col-lg-4">
+    <label for="name"><b>Total Article Count</b></label>
+    <input type="number" class="form-control"   #articlecount= "ngModel" name="total_article" [(ngModel)]="total_article"  placeholder= "Total Article Count" required min="0" pattern='^[1-9][0-9]*$' >
+    <div *ngIf="articlecount.invalid && articlecount.touched" style="color:red"> 
+     <div *ngIf="articlecount.errors?.['required']" style="color:red"> Please Enter the weight of the consignment</div>
+     <div *ngIf="articlecount.errors?.['Pattern']" style="color:red"> Please Enter a positive Value</div>
+    </div>
+  </div>
+
+
+  <div class="form-group col-lg-4">
+    <label for="name"><b>Vechicle Type</b></label>
+    <select class="form-control" #vehicle="ngModel" [(ngModel)]="vehicle_type"  name = "vehicle_type" nameplaceholder="Select Vechicle Type" required>
+     <option *ngFor="let vehicle of Vehicle" >{{ vehicle }} </option>
+ </select>
+ <div *ngIf="vehicle.invalid && vehicle.touched" style="color:red"> 
+   <div *ngIf="vehicle.errors?.['required']" style="color:red"> Please Select the Vechicle Type</div>
+  </div>
+  </div>
+
+
+  <div class="form-group col-lg-4">
+    <label for="name"><b>Expected Pickup Time</b></label>
+    <input type="time" class="form-control"  #pickuptime="ngModel" name="pickup_time" [(ngModel)]="pickup_time"  placeholder= "Expected Pickup time" required >
+  
+    <div *ngIf="pickuptime.invalid && pickuptime.touched" style="color:red"> 
+     <div *ngIf="pickuptime.errors?.['required']" style="color:red"> Please Enter the Expected Pickup time</div>
+    </div>
+  </div>
+
+
+
+ </div>
+
+
+ <br>
+ <br>
+
+ <button type="submit"  [disabled]="blindmanifestbooking.invalid" class="btn btn-dark" (click)="blindManifestbooking(blindmanifestbooking)">Submit</button>
+
+
+ <br>
+ <br>
+
+</form>

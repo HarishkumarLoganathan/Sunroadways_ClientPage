@@ -1,0 +1,124 @@
+<app-userheader></app-userheader>
+<h2 class="text-center">ORDER HISTORY</h2>
+<br>
+
+<form #dateform="ngForm" (ngSubmit)="validatedate()" novalidate>
+
+  <div class="form-group">
+    <div class="col-sm-3 p-2">
+    <label for="date" class="px-2"><b> Select Start date :</b></label>
+    <input  class="bg-dark text-white py-1" type="date" id="Start_Date" name="Start_Date" placeholder="YYYY-MM-DD" #name="ngModel"  [(ngModel)]="Start_Date" style="border-color: black; border-width:0.05cm;">
+    
+      
+      </div>
+    
+    </div>
+
+<div class="form-group">
+<div class="col-sm-3 px-0 py-2">
+<label for="date" class="px-3"><b> Select End   date :</b></label>
+<input  class="bg-dark text-white py-1" type="date" id="End_Date" name="End_Date" placeholder="YYYY-MM-DD" #name="ngModel"  [(ngModel)]="End_Date" style="border-color: black; border-width:0.05cm;">
+
+  <div *ngIf= "Start_Date >= End_Date" style="color:red"> Please check the After date range</div>
+  </div>
+
+</div>
+ 
+<div class="col-sm-2">
+
+</div>
+
+<div class="col-sm-2 p-1">
+
+<button class="btn btn-success py-1" [disabled]="Start_Date>=End_Date"> Filter on Date</button>
+</div>
+
+
+
+
+
+</form>
+
+
+
+
+
+<div class="div py-3" *ngFor="let item of items">
+<div class="card text-right">
+  <div class="card-header" style="background-color: rgb(234, 234, 238);">
+    <h5 class="card-title">LR NUMBER : {{Order_hist['Lr_Number']}} </h5>
+  </div>
+  <div class="card-body">
+
+    <div class="row p-3">
+
+      <div class="col-sm-3">
+      <p style="line-height:0.25;"> <b>ORDER REF : </b> {{Order_hist['Order_Ref']}}</p>
+      </div>
+      <div class="col-sm-3">
+      <p style="line-height:0.25;"> <b>From: </b> {{Order_hist['From']}}</p>
+      </div>
+      <div class="col-sm-3">
+      <p style="line-height:0.25;"> <b>To : </b>{{Order_hist['To']}}</p>
+      </div>
+      <div class="col-sm-3">
+      <p style="line-height:0.25;"> <b>Package Count : </b>{{Order_hist['Package_Count']}}</p>
+      </div>
+      </div>
+
+      <div class="row p-3">
+
+        <div class="col-sm-3">
+          <p style="line-height:0.25;"> <b>Delivered Time : </b>{{Order_hist['Delivered Time']}}</p>
+          </div>
+          <div class="col-sm-3">
+            <p style="line-height:0.25;"> <b>Payment Info : </b>{{Order_hist['Payment_Info']}}</p>
+            </div>
+            <div class="col-sm-3">
+              <p style="line-height:0.25;"> <b>Delivery Status : </b>{{Order_hist['Delivery_Status']}}</p>
+              </div>
+
+
+      </div>
+
+      
+   
+    
+  </div>
+  
+  <div class="card-footer" style="background-color: rgb(242, 242, 247);">
+    <div class="row">
+
+      <div class="col-sm-10 py-2">
+    <button class="btn btn-dark"> Download Invoice</button>
+
+  </div>
+
+
+  <div class="col-sm-2 py-2">
+  <button class="btn btn-danger text-left ">Raise a Complaint</button>
+</div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

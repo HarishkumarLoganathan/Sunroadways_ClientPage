@@ -1,0 +1,30 @@
+.date-input {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1em;
+  }
+  
+  .date-input input[type="text"] {
+    width: 150px;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  .date-picker-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.5em;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .date-picker-btn:hover {
+    color: #333;
+  }
